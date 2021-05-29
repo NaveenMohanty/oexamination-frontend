@@ -1,7 +1,8 @@
 import React from "react";
+import HeadFoot from "../components/headerfooter";
 
 const Signin = () => {
-  return <div>Hello</div>;
+  return <HeadFoot>Hello</HeadFoot>;
 };
 
 export default Signin;
