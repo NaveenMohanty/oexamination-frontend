@@ -34,3 +34,31 @@ padding:${(props) => props.padding || "none"};
 margin:${(props) => props.margin || "none"};
 background-color:${(props) => props.background || "none"};
 `;
+
+export const Input = Styled.input`
+width: ${(props) => props.width || "100%"};
+height: ${(props) => props.height || "30px"};
+margin: ${(props) => props.margin || "none"};
+padding: ${(props) => props.padding || "0px 5px"};
+background: #EDF8DF;
+border: 1px solid #000000;
+box-sizing: border-box;
+border-radius: 2px;
+`;
+
+export const Button = Styled.button`
+width: ${(props) => props.width || "100%"};
+height: ${(props) => props.height || "40px"};
+font-family: Nova Round;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 17px;
+padding:${(props) => props.padding || "none"};
+margin:${(props) => props.margin || "none"};
+background: ${(props) => props.background || "#47926E"};
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 5px;
+color: #FFFFFF;
+cursor:pointer;
+`;

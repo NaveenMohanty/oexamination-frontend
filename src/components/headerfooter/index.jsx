@@ -5,11 +5,13 @@ import { Container } from "../../styled";
 
 const index = ({ children }) => {
   return (
-    <Container direction="column">
+    <>
       <Header />
-      {children}
+      <Container direction="column" height="82vh" background="#EDF8DF">
+        {children}
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 export default index;

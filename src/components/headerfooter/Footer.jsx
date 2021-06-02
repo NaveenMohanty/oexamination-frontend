@@ -11,15 +11,15 @@ const Footer = () => {
     <Container
       direction="row"
       background="black"
-      height="50px"
+      height="60px"
       align="center"
-      position="fixed"
+      position="absolute"
       bottom="0px"
-      left="0px"
     >
       <a
         href="https://github.com/NaveenMohanty/oexamination-frontend"
         target="_blank"
+        rel="noreferrer"
       >
         <Container
           direction="column"
