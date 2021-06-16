@@ -1,31 +1,59 @@
-import React from "react";
 import axios from "axios";
-const axiosHook = async ({
-  URL = "",
-  methods = "GET",
-  body = {},
-  header = {},
-}) => {
-  let param = {
-    url: `${process.env.REACT_APP_BACKEND_URL}${URL}`,
-    method: methods,
-    data: body,
-    timeout: 5000,
-    auth: {
-      Authorization: `Bearer `,
-      ...header,
-    },
-  };
-  try {
-    const { data, status, headers } = await axios(param);
-    if (status === 200) {
-      return { response: data, headers, error: null };
-    } else {
-      return { response: data, headers, error: status };
+import store from "../redux/store";
+import { setLoading, unSetLoading } from "../redux/actions/loader";
+import { setErrorAlert, setSuccessAlert } from "../redux/actions/alert";
+import { getUser } from "../utils/localStorage";
+
+const axiosHook = (URL = "", methods = "GET", body = {}, header = {}) => {
+  return new Promise(async (resolve, reject) => {
+    const dispatch = store.dispatch;
+    dispatch(setLoading());
+    let token = getUser() ? getUser().token : "";
+    let baseurl = `${process.env.REACT_APP_BACKEND_URL}`;
+    let param = {
+      url: baseurl + URL,
+      method: methods,
+      data: body,
+      auth: {
+        Authorization: `Bearer ${token}`,
+        ...header,
+      },
+    };
+    try {
+      const { data, status, headers } = await axios(param);
+      setTimeout(() => {
+        dispatch(unSetLoading());
+      }, 1000);
+
+      if (status === 200) {
+        console.log({ data, status, headers });
+        if (data["message"]) dispatch(setSuccessAlert(data.message));
+        return resolve({ response: data, headers, error: null });
+      }
+    } catch (error) {
+      console.log(error.message);
+      let err = "";
+      if (error && error.response) {
+        const { data, status } = error.response;
+        if (status === 500) err = "500 Server error";
+        else if (data && data.error) err = data.error;
+        else if (data && data.message) err = data.message;
+      } else if (error) {
+        if (error.message) err = error.message;
+      }
+
+      dispatch(setErrorAlert(err));
+      setTimeout(() => {
+        dispatch(unSetLoading());
+      }, 1000);
+      console.log(err);
+      return resolve({
+        response: null,
+        headers: null,
+        error: err,
+      });
     }
-  } catch (error) {
-    return { response: null, headers: null, error };
-  }
+  });
 };
 
 export default axiosHook;

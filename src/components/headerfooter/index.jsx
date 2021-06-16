@@ -7,7 +7,7 @@ const index = ({ children }) => {
   return (
     <>
       <Header />
-      <Container direction="column" height="82vh" background="#EDF8DF">
+      <Container direction="column" height="83vh" background="#EDF8DF">
         {children}
       </Container>
       <Footer />

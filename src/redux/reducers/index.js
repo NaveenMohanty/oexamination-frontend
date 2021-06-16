@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import engineReducer from "./engine";
-import ecommerceReducer from "./ecommerce";
+import loaderReducer from "./loader";
+import userReducer from "./user";
+import alertReducer from "./alert";
 
 const rootReducer = combineReducers({
-  engine: engineReducer,
-  ecommerce: ecommerceReducer,
+  loader: loaderReducer,
+  user: userReducer,
+  alert: alertReducer,
 });
 
 export default rootReducer;

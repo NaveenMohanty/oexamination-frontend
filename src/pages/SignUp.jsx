@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import HeadFoot from "../components/headerfooter";
 import { Container, Text, Input, Button } from "../styled";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
+import { useDispatch } from "react-redux";
+import { signUp } from "../redux/actions/user";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     height: "70vh",
@@ -22,11 +25,24 @@ const useStyles = makeStyles((theme) => ({
     boxSizing: "border-box",
     borderRadius: "2px",
     padding: "5px",
+    width: "100%",
+    height: "70px",
   },
 }));
 
 const SignUp = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const [details, setDetails] = useState({});
+  const onchange = (e) => {
+    const { name, value } = e.target;
+    setDetails({ ...details, [name]: value });
+  };
+  const onsubmit = (e) => {
+    e.preventDefault();
+    if (details["password"] === details["confirmpassword"])
+      dispatch(signUp(details));
+  };
   return (
     <HeadFoot>
       <Container justify="center" align="center" height="100%">
@@ -34,21 +50,28 @@ const SignUp = () => {
           <Container justify="center" align="center">
             <Text size="20px">Sign Up</Text>
           </Container>
-          <form>
+          <form onSubmit={onsubmit}>
             <Container direction="column" align="center">
               <Input
                 margin="10px 0px"
                 type="text"
                 width="80%"
                 height="40px"
+                name="name"
                 placeholder="Name"
+                value={details["name"] || ""}
+                onChange={onchange}
+                maxLength={30}
                 required
               />
               <Input
                 margin="10px 0px"
                 height="40px"
                 type="email"
+                name="email"
                 width="80%"
+                value={details["email"] || ""}
+                onChange={onchange}
                 placeholder="Email"
                 required
               />
@@ -56,10 +79,9 @@ const SignUp = () => {
                 <textarea
                   className={classes.textarea}
                   placeholder="About Yourself"
-                  id="w3review"
-                  name="w3review"
-                  rows="4"
-                  cols="38"
+                  name="userinfo"
+                  value={details["userinfo"] || ""}
+                  onChange={onchange}
                   required
                 ></textarea>
               </div>
@@ -67,16 +89,24 @@ const SignUp = () => {
                 margin="10px 0px"
                 height="40px"
                 type="password"
+                name="password"
                 width="80%"
+                value={details["password"] || ""}
+                onChange={onchange}
                 placeholder="Password"
+                minLength={9}
                 required
               />
               <Input
                 margin="10px 0px"
                 height="40px"
                 type="password"
+                name="confirmpassword"
                 width="80%"
                 placeholder="Confirm Password"
+                value={details["confirmpassword"] || ""}
+                onChange={onchange}
+                minLength={9}
                 required
               />
               <Container width="80%" justify="flex-end">

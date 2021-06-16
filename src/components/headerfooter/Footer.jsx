@@ -11,8 +11,8 @@ const Footer = () => {
     <Container
       direction="row"
       background="black"
-      height="60px"
       align="center"
+      padding="10px 0px"
       position="absolute"
       bottom="0px"
     >
@@ -23,14 +23,11 @@ const Footer = () => {
       >
         <Container
           direction="column"
-          width="250px"
+          width="50px"
           justify="center"
           margin="15px 0  0 3vw"
         >
           <img style={imageStyle} src={githubLogo} alt="" />
-          <Text size="12px" color="white">
-            Go to GitHub Repository of this website
-          </Text>
         </Container>
       </a>
     </Container>

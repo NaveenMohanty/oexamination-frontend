@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
+import { getUser } from "../utils/localStorage";
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  let auth = false;
+  let auth = getUser();
   return (
     <Route
       {...rest}
