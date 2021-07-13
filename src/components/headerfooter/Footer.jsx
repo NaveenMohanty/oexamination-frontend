@@ -13,7 +13,7 @@ const Footer = () => {
       background="black"
       align="center"
       padding="10px 0px"
-      position="absolute"
+      position="fixed"
       bottom="0px"
     >
       <a

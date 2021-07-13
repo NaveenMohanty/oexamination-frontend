@@ -5,7 +5,7 @@ import Paper from "@material-ui/core/Paper";
 import { useDispatch } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import { signIn } from "../redux/actions/user";
-
+import history from "../utils/createHistory";
 const useStyles = makeStyles((theme) => ({
   paper: {
     height: "40vh",
@@ -31,6 +31,9 @@ const SignIn = (props) => {
     e.preventDefault();
     if (password.length >= 9) {
       if (await dispatch(signIn(details))) {
+        setTimeout(() => {
+          history.push("/host");
+        }, 1000);
         setDetails({
           email: "",
           password: "",

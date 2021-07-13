@@ -9,12 +9,13 @@ const axiosHook = (URL = "", methods = "GET", body = {}, header = {}) => {
     const dispatch = store.dispatch;
     dispatch(setLoading());
     let token = getUser() ? getUser().token : "";
-    let baseurl = `${process.env.REACT_APP_BACKEND_URL}`;
+    console.log(token);
+    let baseurl = process.env.REACT_APP_BACKEND_URL;
     let param = {
       url: baseurl + URL,
       method: methods,
       data: body,
-      auth: {
+      headers: {
         Authorization: `Bearer ${token}`,
         ...header,
       },
@@ -31,7 +32,7 @@ const axiosHook = (URL = "", methods = "GET", body = {}, header = {}) => {
         return resolve({ response: data, headers, error: null });
       }
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
       let err = "";
       if (error && error.response) {
         const { data, status } = error.response;
@@ -41,7 +42,6 @@ const axiosHook = (URL = "", methods = "GET", body = {}, header = {}) => {
       } else if (error) {
         if (error.message) err = error.message;
       }
-
       dispatch(setErrorAlert(err));
       setTimeout(() => {
         dispatch(unSetLoading());

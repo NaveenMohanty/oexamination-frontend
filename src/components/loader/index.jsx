@@ -10,7 +10,6 @@ const Loader = () => {
       {loader > 0 && (
         <PortalWrapper
           top="0"
-          zIndex={2000}
           background="rgb(0, 0, 0,0.5)"
           justify="center"
           align="center"

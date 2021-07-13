@@ -6,12 +6,16 @@ import history from "../../utils/createHistory";
 import IconButtons from "../materialui/IconButtons";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { signOut } from "../../redux/actions/user";
+import WelcomeName from "../pages/profile";
 
 const Header = (props) => {
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(false);
   const [name, setName] = useState("noname");
   const user = useSelector((state) => state.user);
+  const check =
+    history.location.pathname === "/host" ||
+    history.location.pathname === "/exam";
   useEffect(() => {
     if (getUser()) {
       setIsLogin(true);
@@ -43,7 +47,7 @@ const Header = (props) => {
         height="50px"
         flex="0.8"
       >
-        {isLogin && (
+        {isLogin && check && (
           <>
             <Tab
               active={history.location.pathname === "/host"}
@@ -51,6 +55,7 @@ const Header = (props) => {
             >
               Host
             </Tab>
+
             <Tab
               active={history.location.pathname === "/exam"}
               onClick={() => history.push("/exam")}
@@ -69,9 +74,7 @@ const Header = (props) => {
       >
         {isLogin ? (
           <>
-            <Text family="IBM Plex Sans" size="15px" color="white">
-              Welcome <b>{name.substr(0, name.indexOf(" "))}</b>
-            </Text>
+            <WelcomeName />
             <IconButtons
               onClick={() => {
                 dispatch(signOut());
