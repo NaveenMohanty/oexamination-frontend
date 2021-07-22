@@ -6,9 +6,16 @@ import IconButtons from "../../materialui/IconButtons";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 import history from "../../../utils/createHistory";
 
-const InstructionScreen = ({ handle, setVideoPermission, videoPermission }) => {
-  const [agree, setAgree] = useState(false);
-  const { answer, exitExam } = ExamContextConsumer();
+const InstructionScreen = () => {
+  const {
+    answer,
+    agree,
+    setAgree,
+    handle,
+    setVideoPermission,
+    videoPermission,
+    toogleFullscreen,
+  } = ExamContextConsumer();
 
   return (
     <HeaderFooter>
@@ -30,16 +37,30 @@ const InstructionScreen = ({ handle, setVideoPermission, videoPermission }) => {
             Instruction:
           </Text>
           <ol style={{ fontSize: "22px" }}>
-            <li>Click on the allow button to give permission for webcam.</li>
-            <li>On start of exam the screen will become full screen.</li>
-            <li>Do not open other tab or other application during exam.</li>
             <li>
-              If found doing any of such activity exam will get terminated.
+              On clicking the "Start" button, you will enter the FullScreen mode
+              of the exam.
             </li>
-            <li>Examiner will see live footage of your audio and video.</li>
             <li>
-              Examiner can terminate your exam if found any malpractice activity
-              during exam.
+              You can exit the exam by clicking on the "Submit & Exit" button at
+              the top-right.
+            </li>
+            <li>
+              If you leave the exam tab or exit full-screen you will be
+              terminated from the exam.
+            </li>
+            <li>Once Exited from the exam, you cannot enter the exam again.</li>
+            <li>
+              The answer once responded will be registered as attempted, further
+              it can be changed only.
+            </li>
+            <li>
+              When exam time is over, your answers will get be automatically
+              submitted.
+            </li>
+            <li>
+              You can track your progress from the progress tracker on the right
+              section of the exam page.
             </li>
           </ol>
           <label for="instruction" style={{ fontSize: "22px", color: "red" }}>
@@ -52,8 +73,8 @@ const InstructionScreen = ({ handle, setVideoPermission, videoPermission }) => {
                 setAgree(!agree);
               }}
             ></input>
-            I have read the instruction and have given permission for audio and
-            video to my browser
+            I have read the instruction and permit to track my computer activity
+            during the exam.
           </label>
         </label>
         <Container justify="center">
@@ -63,19 +84,20 @@ const InstructionScreen = ({ handle, setVideoPermission, videoPermission }) => {
             margin="10px 10px 0 0"
             background="#D31A50"
             onClick={() => {
-              videoPermission && agree && answer && handle.enter();
+              // videoPermission && agree && answer && handle.enter();
+              agree && answer && toogleFullscreen();
             }}
           >
             Start
           </Button>
-          <Button
+          {/* <Button
             width="230px"
             height="30px"
             margin="10px 0 0 10px"
             onClick={() => setVideoPermission(true)}
           >
             Test and Allow Audio and Video
-          </Button>
+          </Button> */}
         </Container>
       </Container>
     </HeaderFooter>

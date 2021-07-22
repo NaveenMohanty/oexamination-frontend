@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Container } from "../../../../styled";
 import Header from "./header";
 import LeftPanel from "./leftpanel";
 import RightPanel from "./rightpanel";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { ExamContextConsumer } from "../context";
 
 const Index = () => {
   const { loader } = useSelector((state) => state);
+  const { activateEvents, element } = ExamContextConsumer();
+  useEffect(() => {
+    activateEvents();
+  }, []);
 
   return (
     <Container

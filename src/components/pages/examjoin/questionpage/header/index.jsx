@@ -19,28 +19,7 @@ const styles = {
 };
 const Header = () => {
   const { currentExam } = useSelector((state) => state.exam);
-  const { exitExam, handle } = ExamContextConsumer();
-
-  useEffect(() => {
-    window.addEventListener("blur", pause);
-    window.addEventListener("focus", play);
-  }, [handle]);
-  var timer = null;
-
-  function pause() {
-    console.log("not focused");
-    timer = setTimeout(() => {
-      exitExam("Malpractice");
-    }, 10000);
-    if (handle && handle.active) {
-      handle.exit();
-    }
-  }
-
-  function play() {
-    clearTimeout(timer);
-    console.log("focused");
-  }
+  const { exitExam } = ExamContextConsumer();
 
   return (
     <Paper style={styles.paper}>

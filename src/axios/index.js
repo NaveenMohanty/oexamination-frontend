@@ -24,7 +24,7 @@ const axiosHook = (URL = "", methods = "GET", body = {}, header = {}) => {
       const { data, status, headers } = await axios(param);
       setTimeout(() => {
         dispatch(unSetLoading());
-      }, 1000);
+      }, 300);
 
       if (status === 200) {
         console.log({ data, status, headers });
@@ -45,7 +45,7 @@ const axiosHook = (URL = "", methods = "GET", body = {}, header = {}) => {
       dispatch(setErrorAlert(err));
       setTimeout(() => {
         dispatch(unSetLoading());
-      }, 1000);
+      }, 300);
       console.log(err);
       return resolve({
         response: null,

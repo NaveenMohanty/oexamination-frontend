@@ -36,7 +36,13 @@ const Header = (props) => {
       height="50px"
     >
       <Container flex="0.1">
-        <Text family="Rochester" size="25px" color="#F3EA16" margin="0 0 0 3vw">
+        <Text
+          family="Purisa"
+          size="25px"
+          weight="bold"
+          color="#F3EA16"
+          margin="0 0 0 3vw"
+        >
           Oexamination
         </Text>
       </Container>

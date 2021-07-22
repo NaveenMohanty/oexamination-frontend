@@ -19,8 +19,7 @@ function MyTimer({ expiryTimestamp }) {
   } = useTimer({
     expiryTimestamp,
     onExpire: () => {
-      exitExam("Exited");
-      history.push("/exam");
+      exitExam("Exited", true);
     },
   });
 
