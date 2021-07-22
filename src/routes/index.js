@@ -11,6 +11,7 @@ import EditExam from "../page/EditExam";
 import ExamJoin from "../page/ExamJoin";
 import ViewResultHost from "../page/ViewResultHost";
 import CandidateResult from "../page/CandidateResult";
+import HostExamJoin from "../page/HostExamJoin";
 
 const Routes = () => {
   useEffect(() => {
@@ -23,6 +24,7 @@ const Routes = () => {
         <Route path="/signup" exact component={SignUp} />
         <Route path="/signin" exact component={SignIn} />
         <PrivateRoute path="/joinexam" exact component={ExamJoin} />
+        <PrivateRoute path="/host/joinexam" exact component={HostExamJoin} />
         <PrivateRoute path="/host" exact component={Host} />
         <PrivateRoute path="/exam" exact component={Exam} />
         <PrivateRoute path="/exam/edit" exact component={EditExam} />

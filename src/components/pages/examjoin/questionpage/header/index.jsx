@@ -29,12 +29,12 @@ const Header = () => {
 
   function pause() {
     console.log("not focused");
-    timer = setTimeout(() => {
-      exitExam("Malpractice");
-    }, 10000);
-    if (handle && handle.active) {
-      handle.exit();
-    }
+    // timer = setTimeout(() => {
+    //   exitExam("Malpractice");
+    // }, 10000);
+    // if (handle && handle.active) {
+    //   handle.exit();
+    // }
   }
 
   function play() {

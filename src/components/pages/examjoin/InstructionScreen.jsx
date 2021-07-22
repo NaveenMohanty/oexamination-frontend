@@ -19,7 +19,8 @@ const InstructionScreen = ({ handle, setVideoPermission, videoPermission }) => {
         tooltipTitle="Back"
         tooltipPlacement="right"
         onClick={() => {
-          history.push("/host");
+          // history.goBack();
+          window.history.back();
         }}
       >
         <KeyboardBackspaceIcon fontSize="large" />

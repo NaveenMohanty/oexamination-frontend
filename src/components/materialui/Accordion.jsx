@@ -77,9 +77,9 @@ export default function Accordions({ exams = [], user = null }) {
             width="80px"
             background="#82DAB0"
             onClick={() => {
-              {
-                history.push(`/joinexam?exam_id=${exam._id}`);
-              }
+              user === "HOST"
+                ? history.push(`/host/joinexam?exam_id=${exam._id}`)
+                : history.push(`/joinexam?exam_id=${exam._id}`);
             }}
           >
             Join
