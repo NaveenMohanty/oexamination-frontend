@@ -9,9 +9,7 @@ import { setErrorAlert } from "../../../../redux/actions/alert";
 const Question = ({ details, setDetails }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    console.log(details);
-  }, [details]);
+
   const [question, setQuestion] = useState({
     title: "",
     options: [

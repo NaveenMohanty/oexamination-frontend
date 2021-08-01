@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
-import { makeStyles } from "@material-ui/core/styles";
 import { useSelector, useDispatch } from "react-redux";
 import { UNSET_ALERT } from "../../redux/types";
 
@@ -20,7 +19,7 @@ export default function CustomizedSnackbars() {
     horizontal: "center",
     message: "",
     type: "success",
-    duration: 3000,
+    duration: null,
   });
   const { vertical, horizontal, open, message, type, duration } = state;
   useEffect(() => {
@@ -48,7 +47,7 @@ export default function CustomizedSnackbars() {
         timer = null;
       }
     };
-  }, [alert]);
+  }, [alert, dispatch]);
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;

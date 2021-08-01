@@ -34,7 +34,6 @@ const ModelForm = ({ details = null, setDetails = null }) => {
           name="examtitle"
           value={details["examtitle"] || ""}
           onChange={onchange}
-          placeholder="Exam Title"
         />
         <div style={classes.textareadiv}>
           <textarea

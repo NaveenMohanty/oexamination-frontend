@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect } from "react";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
@@ -33,7 +32,6 @@ export default function Accordions({ exams = [], user = null }) {
           let now = Date.parse(Date());
           let start = Date.parse(exam.startingtime);
           let end = Date.parse(exam.endingtime);
-          // console.log(now, start, end, type);
           if (now < start) {
             return "edit";
           } else if (now >= start && now < end) {
@@ -79,10 +77,11 @@ export default function Accordions({ exams = [], user = null }) {
             onClick={() => {
               user === "HOST"
                 ? history.push(`/host/joinexam?exam_id=${exam._id}`)
-                : history.push(`/joinexam?exam_id=${exam._id}`);
+                : // : history.push(`/joinexam?exam_id=${exam._id}`);
+                  window.open(`/joinexam?exam_id=${exam._id}`, "_blank");
             }}
           >
-            Join
+            {user === "HOST" ? "Exam Live" : "Join"}
           </Button>
         );
       case "result":

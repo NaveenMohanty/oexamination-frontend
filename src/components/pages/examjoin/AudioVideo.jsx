@@ -3,20 +3,31 @@ import { useSelector } from "react-redux";
 import io from "socket.io-client";
 import Peer from "simple-peer";
 import { getUser } from "../../../utils/localStorage";
+import { ExamContextConsumer } from "./context";
+import { setCustomAlert, setErrorAlert } from "../../../redux/actions/alert";
+import { useDispatch } from "react-redux";
+import tone from "../../../assets/alertTone.mp3";
 
-const videoConstraints = {
-  height: window.innerHeight / 2,
-  width: window.innerWidth / 2,
-};
 const AudioVideo = ({ active }) => {
   const { currentExam } = useSelector((state) => state.exam);
+  const dispatch = useDispatch();
+  const { UpdatePeer, getWarn, exitExam, setVideoPermission } =
+    ExamContextConsumer();
   const socketRef = useRef();
   const userVideo = useRef();
   const currentPeer = useRef();
   useEffect(() => {
+    if (!Peer.WEBRTC_SUPPORT) {
+      dispatch(
+        setErrorAlert(
+          "You browser doesn't support video streaming. Try another browser"
+        )
+      );
+      setVideoPermission(false);
+    }
     socketRef.current = io.connect(String(process.env.REACT_APP_SOCKET_URL));
     navigator.mediaDevices
-      .getUserMedia({ video: videoConstraints, audio: true })
+      .getUserMedia({ video: true, audio: true })
       .then((stream) => {
         userVideo.current.srcObject = stream;
 
@@ -28,21 +39,30 @@ const AudioVideo = ({ active }) => {
         });
         socketRef.current.emit("new_join");
 
-        socketRef.current.once("receive_signal", async (payload) => {
-          console.log("receive_signal", payload);
-
+        socketRef.current.on("receive_signal", async (payload) => {
           currentPeer.current = await callReceiver(
             payload.to,
             payload.from,
             JSON.parse(payload.signal),
             stream
           );
+
+          UpdatePeer(currentPeer.current);
         });
+      })
+      .catch((err) => {
+        setVideoPermission(false);
+        dispatch(setErrorAlert(err.message));
       });
     return () => {
       socketRef.current.disconnect();
     };
-  }, [currentExam]);
+  }, [currentExam, dispatch]);
+
+  function playAudio() {
+    var audio = new Audio(tone);
+    audio.play();
+  }
 
   const callReceiver = async (to, from, signal, stream) => {
     const peer = new Peer({
@@ -51,17 +71,25 @@ const AudioVideo = ({ active }) => {
       stream,
     });
 
-    let prom = new Promise((resolve, reject) => {
-      peer.on("signal", (signal) => {
-        resolve(signal);
+    peer.on("signal", (signal) => {
+      socketRef.current.emit("send_signal", {
+        to: from,
+        from: to,
+        signal: JSON.stringify(signal),
+        warn: getWarn().toString(),
       });
     });
-    socketRef.current.emit("send_signal", {
-      to: from,
-      from: to,
-      signal: JSON.stringify(await Promise.all([prom])),
-    });
+
     peer.signal(signal);
+    peer.on("data", (data) => {
+      if (`${data}` === "TERMINATE") {
+        exitExam("Malpractice");
+        currentPeer.current.destroy();
+      } else {
+        playAudio();
+        dispatch(setCustomAlert(`Message: ${data}`, "info", 10000));
+      }
+    });
 
     return peer;
   };
@@ -78,6 +106,7 @@ const AudioVideo = ({ active }) => {
       muted
       autoPlay
       playsInline
+      id="video"
     />
   );
 };

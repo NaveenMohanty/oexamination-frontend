@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Router, Switch, Route } from "react-router-dom";
-import PrivateRoute from "./PrivateRoute";
+import { PrivateRoute, PublicRoute } from "./PrivateRoute";
 import SignUp from "../page/SignUp";
 import SignIn from "../page/SignIn";
 import Host from "../page/Host";
@@ -12,6 +12,8 @@ import ExamJoin from "../page/ExamJoin";
 import ViewResultHost from "../page/ViewResultHost";
 import CandidateResult from "../page/CandidateResult";
 import HostExamJoin from "../page/HostExamJoin";
+import { getUser } from "../utils/localStorage";
+import PageNotFound from "../page/PageNotFound";
 
 const Routes = () => {
   useEffect(() => {
@@ -21,8 +23,8 @@ const Routes = () => {
     <Router history={history}>
       <Preloader />
       <Switch>
-        <Route path="/signup" exact component={SignUp} />
-        <Route path="/signin" exact component={SignIn} />
+        <PublicRoute path="/signup" exact component={SignUp} />
+        <PublicRoute path="/signin" exact component={SignIn} />
         <PrivateRoute path="/joinexam" exact component={ExamJoin} />
         <PrivateRoute path="/host/joinexam" exact component={HostExamJoin} />
         <PrivateRoute path="/host" exact component={Host} />
@@ -34,6 +36,7 @@ const Routes = () => {
           exact
           component={CandidateResult}
         />
+        <Route component={PageNotFound} />
       </Switch>
     </Router>
   );

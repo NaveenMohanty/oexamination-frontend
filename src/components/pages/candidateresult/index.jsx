@@ -15,7 +15,7 @@ const Index = () => {
       const queryParams = new URLSearchParams(window.location.search);
       const exam_id = queryParams.get("exam_id");
       const candidate_id = queryParams.get("candidate_id");
-      console.log(exam_id, candidate_id);
+
       let exam = await dispatch(getExam(exam_id));
       if (exam)
         setAnswer(await dispatch(getCandidateAnswer(exam_id, candidate_id)));

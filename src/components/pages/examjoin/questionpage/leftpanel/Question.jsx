@@ -14,7 +14,7 @@ const Question = ({ question, examid }) => {
       }
     }
     func();
-  }, [answers]);
+  }, [answers, dispatch]);
   const onAnswerSelect = (optionid) => {
     let ans = answers.find((a) => {
       return String(a.questionid) === String(question._id);

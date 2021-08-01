@@ -16,10 +16,9 @@ const Editexam = () => {
       let exam = await dispatch(getExam(exam_id));
       if (exam) setDetails(exam);
       else history.push("/host");
-      console.log(exam);
     };
     func();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container direction="column" align="center">

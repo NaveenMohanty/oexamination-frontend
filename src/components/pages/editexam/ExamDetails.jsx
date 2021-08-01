@@ -28,8 +28,6 @@ const ExamDetails = ({ details, setDetails }) => {
           details.candidates.find((v) => String(v.id) === String(ele._id))
         );
         setSelectedOption([...added]);
-        console.log("add:", added);
-        console.log("exam:", details);
       }
     };
     getData();

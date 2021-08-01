@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Text } from "../../styled";
+import { Container } from "../../styled";
 import githubLogo from "../../assets/images/github.svg";
 const imageStyle = {
   height: "20px",

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Text, Button } from "../../../styled";
+import { Container, Text } from "../../../styled";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
 

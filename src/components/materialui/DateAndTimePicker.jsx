@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
@@ -26,7 +26,6 @@ export default function DateAndTimePicker({
   // }, [defaultValue]);
   const handel = (e) => {
     let value = e.target.value;
-    console.log(value);
     let year = parseInt(value.slice(0, 4));
     let month = parseInt(value.slice(5, 7)) - 1;
     let day = parseInt(value.slice(8, 10));

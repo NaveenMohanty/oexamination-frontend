@@ -18,9 +18,7 @@ const QuestionModelForm = ({ question, setQuestion }) => {
       height: "70px",
     },
   };
-  useEffect(() => {
-    console.log(question);
-  }, [question]);
+
   const onchange = (e) => {
     const { name, value } = e.target;
     setQuestion({ ...question, [name]: value });

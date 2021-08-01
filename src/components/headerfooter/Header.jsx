@@ -7,11 +7,11 @@ import IconButtons from "../materialui/IconButtons";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { signOut } from "../../redux/actions/user";
 import WelcomeName from "../pages/profile";
+import Logo from "../../assets/images/logo.png";
 
 const Header = (props) => {
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(false);
-  const [name, setName] = useState("noname");
   const user = useSelector((state) => state.user);
   const check =
     history.location.pathname === "/host" ||
@@ -19,10 +19,8 @@ const Header = (props) => {
   useEffect(() => {
     if (getUser()) {
       setIsLogin(true);
-      setName(getUser().user.name);
     } else {
       setIsLogin(false);
-      setName("noname");
     }
   }, [user]);
 
@@ -35,8 +33,22 @@ const Header = (props) => {
       background="#47926E"
       height="50px"
     >
-      <Container flex="0.1">
-        <Text family="Rochester" size="25px" color="#F3EA16" margin="0 0 0 3vw">
+      <Container
+        width="none"
+        flex="0.1"
+        direction="row"
+        align="center"
+        padding="10px"
+      >
+        <img width="40px" src={Logo} alt="Oexamination" />
+        <Text
+          family="Purisa"
+          size="25px"
+          weight="bold"
+          color="#F3EA16"
+          margin="0 0 0 1vw"
+          lineHeight="0px"
+        >
           Oexamination
         </Text>
       </Container>

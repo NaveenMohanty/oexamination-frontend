@@ -9,7 +9,7 @@ const axiosHook = (URL = "", methods = "GET", body = {}, header = {}) => {
     const dispatch = store.dispatch;
     dispatch(setLoading());
     let token = getUser() ? getUser().token : "";
-    console.log(token);
+
     let baseurl = process.env.REACT_APP_BACKEND_URL;
     let param = {
       url: baseurl + URL,
@@ -22,17 +22,14 @@ const axiosHook = (URL = "", methods = "GET", body = {}, header = {}) => {
     };
     try {
       const { data, status, headers } = await axios(param);
-      setTimeout(() => {
-        dispatch(unSetLoading());
-      }, 1000);
+
+      dispatch(unSetLoading());
 
       if (status === 200) {
-        console.log({ data, status, headers });
         if (data["message"]) dispatch(setSuccessAlert(data.message));
         return resolve({ response: data, headers, error: null });
       }
     } catch (error) {
-      console.log(error);
       let err = "";
       if (error && error.response) {
         const { data, status } = error.response;
@@ -43,10 +40,9 @@ const axiosHook = (URL = "", methods = "GET", body = {}, header = {}) => {
         if (error.message) err = error.message;
       }
       dispatch(setErrorAlert(err));
-      setTimeout(() => {
-        dispatch(unSetLoading());
-      }, 1000);
-      console.log(err);
+
+      dispatch(unSetLoading());
+
       return resolve({
         response: null,
         headers: null,
