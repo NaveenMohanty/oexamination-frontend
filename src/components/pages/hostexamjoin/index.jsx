@@ -103,6 +103,12 @@ const HostExamJoin = (props) => {
   const initiateCall = (to, from, stream) => {
     const peer = new Peer({
       initiator: true,
+      config: {
+        iceServers: [
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
+        ],
+      },
       trickle: false,
       stream,
     });

@@ -67,6 +67,12 @@ const AudioVideo = ({ active }) => {
   const callReceiver = async (to, from, signal, stream) => {
     const peer = new Peer({
       initiator: false,
+      config: {
+        iceServers: [
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
+        ],
+      },
       trickle: false,
       stream,
     });
