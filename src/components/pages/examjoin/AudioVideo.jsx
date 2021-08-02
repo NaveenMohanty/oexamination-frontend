@@ -76,6 +76,8 @@ const AudioVideo = ({ active }) => {
       initiator: false,
       config: {
         iceServers: [
+          { urls: "stun:stun.l.google.com:19302" },
+          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
           {
             url: "turn:numb.viagenie.ca",
             credential: "muazkh",
@@ -106,11 +108,9 @@ const AudioVideo = ({ active }) => {
             username: "YzYNCouZM1mhqhmseWk6",
             credential: "YzYNCouZM1mhqhmseWk6",
           },
-          { urls: "stun:stun.l.google.com:19302" },
-          { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
         ],
       },
-      trickle: true,
+      trickle: false,
       stream,
     });
 
