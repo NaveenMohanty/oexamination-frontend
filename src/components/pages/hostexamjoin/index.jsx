@@ -39,7 +39,14 @@ const HostExamJoin = (props) => {
       user.type = "host";
 
       navigator.mediaDevices
-        .getUserMedia({ video: true, audio: true })
+        .getUserMedia({
+          video: {
+            width: { max: 352 },
+            height: { max: 240 },
+            frameRate: { ideal: 2, max: 3 },
+          },
+          audio: true,
+        })
         .then((stream) => {
           socketRef.current.emit("join_room", {
             user,

@@ -27,7 +27,14 @@ const AudioVideo = ({ active }) => {
     }
     socketRef.current = io.connect(String(process.env.REACT_APP_SOCKET_URL));
     navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
+      .getUserMedia({
+        video: {
+          width: { max: 352 },
+          height: { max: 240 },
+          frameRate: { ideal: 10, max: 15 },
+        },
+        audio: true,
+      })
       .then((stream) => {
         userVideo.current.srcObject = stream;
 
