@@ -121,7 +121,7 @@ const HostExamJoin = (props) => {
           { urls: "stun:global.stun.twilio.com:3478?transport=udp" },
         ],
       },
-      trickle: false,
+      trickle: true,
       stream,
     });
 
