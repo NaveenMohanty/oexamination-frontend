@@ -23,6 +23,7 @@ Install this project with npm
 To run this project, you will need to add the following environment variables to your .env file
 
 `REACT_APP_BACKEND_URL = "https://oexamination-backend.herokuapp.com/api"`
+
 `REACT_APP_SOCKET_URL = "https://oexamination-backend.herokuapp.com/"`
 
 ## [Click Here to see Features, Tech used and Website demonstration](https://drive.google.com/file/d/1U46rtSarfr111bin5vmNPGuceUwHXJLq/view?usp=sharing)
