@@ -1,6 +1,8 @@
 import React from "react";
-import { Container } from "../../styled";
+import { Container, Button } from "../../styled";
 import githubLogo from "../../assets/images/github.svg";
+import history from "../../utils/createHistory";
+
 const imageStyle = {
   height: "20px",
   with: "20px",
@@ -12,12 +14,13 @@ const Footer = () => {
       direction="row"
       background="black"
       align="center"
+      justify="space-between"
       padding="10px 0px"
       position="fixed"
       bottom="0px"
     >
       <a
-        href="https://github.com/NaveenMohanty/oexamination-frontend"
+        href="https://github.com/NaveenMohanty"
         target="_blank"
         rel="noreferrer"
       >
@@ -30,6 +33,15 @@ const Footer = () => {
           <img style={imageStyle} src={githubLogo} alt="" />
         </Container>
       </a>
+      <Button
+        margin="0px 10px 0px 0px"
+        padding="5px"
+        width="none"
+        height="none"
+        onClick={() => history.push("/feedback")}
+      >
+        Feedback
+      </Button>
     </Container>
   );
 };

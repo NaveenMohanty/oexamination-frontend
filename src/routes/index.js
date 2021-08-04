@@ -14,6 +14,7 @@ import CandidateResult from "../page/CandidateResult";
 import HostExamJoin from "../page/HostExamJoin";
 import { getUser } from "../utils/localStorage";
 import PageNotFound from "../page/PageNotFound";
+import Feedback from "../page/Feedback";
 
 const Routes = () => {
   useEffect(() => {
@@ -36,6 +37,7 @@ const Routes = () => {
           exact
           component={CandidateResult}
         />
+        <Route path="/feedback" exact component={Feedback} />
         <Route component={PageNotFound} />
       </Switch>
     </Router>
