@@ -35,16 +35,19 @@ export default function DateAndTimePicker({
     onChange(date.toString());
   };
 
-  const timeConverter = (date = Date()) => {
-    if (date) {
-      var D = new Date(date);
-      let option = { hour12: false };
-      let dateString = `${D.getFullYear()}-${
-        D.getMonth() + 1 < 10 ? `0${D.getMonth() + 1}` : `${D.getMonth() + 1} `
-      }-${
-        D.getDate() < 10 ? `0${D.getDate()}` : `${D.getDate()}`
-      }T${D.toLocaleTimeString("en-US", option)}`;
-      return dateString;
+  const timeConverter = (d = Date()) => {
+    const convert = (v) => {
+      return parseInt(v) < 10 ? "0" + String(v) : String(v);
+    };
+    if (d) {
+      let date = new Date(d);
+      let year = String(date.getFullYear());
+      let month = convert(date.getMonth() + 1);
+      let dates = convert(date.getDate());
+      let hour = convert(date.getHours());
+      let min = convert(date.getMinutes());
+      let x = year + "-" + month + "-" + dates + "T" + hour + ":" + min;
+      return String(x);
     }
   };
 
