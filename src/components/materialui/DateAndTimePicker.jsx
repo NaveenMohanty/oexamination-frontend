@@ -47,7 +47,6 @@ export default function DateAndTimePicker({
       let hour = convert(date.getHours());
       let min = convert(date.getMinutes());
       let x = year + "-" + month + "-" + dates + "T" + hour + ":" + min;
-      ``;
       return String(x);
     }
   };
