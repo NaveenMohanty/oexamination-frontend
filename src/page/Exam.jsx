@@ -34,9 +34,9 @@ const Exam = () => {
         </Container>
         <Container
           width="49%"
-          height="84vh"
-          overflowY="auto"
-          overflowX="hidden"
+          height="100%"
+          overflowY=""
+          overflowX=""
           direction="column"
         >
           <Paper

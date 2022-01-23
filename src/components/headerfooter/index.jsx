@@ -9,7 +9,7 @@ const index = ({ children }) => {
       <Header />
       <Container
         direction="column"
-        height="83vh"
+        height="90vh"
         overflow="auto"
         background="#EDF8DF"
       >
