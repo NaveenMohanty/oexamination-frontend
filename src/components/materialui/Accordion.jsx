@@ -90,11 +90,11 @@ export default function Accordions({ exams = [], user = null }) {
             height="30px"
             width="100px"
             background="#6089F1"
-            onClick={() =>
-              user === "HOST"
-                ? history.push(`/exam/result?exam_id=${exam._id}`)
-                : history.push(`/candidate/result?exam_id=${exam._id}`)
-            }
+            // onClick={() =>
+            //   user === "HOST"
+            //     ? history.push(`/exam/result?exam_id=${exam._id}`)
+            //     : history.push(`/candidate/result?exam_id=${exam._id}`)
+            // }
           >
             View Result
           </Button>

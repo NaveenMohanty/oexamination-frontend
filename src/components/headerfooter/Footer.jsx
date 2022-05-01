@@ -19,7 +19,8 @@ const Footer = () => {
       position="fixed"
       bottom="0px"
     >
-      <a
+      {/* TODO: Removed for temp */}
+      {/* <a
         href="https://github.com/NaveenMohanty"
         target="_blank"
         rel="noreferrer"
@@ -32,9 +33,9 @@ const Footer = () => {
         >
           <img style={imageStyle} src={githubLogo} alt="" />
         </Container>
-      </a>
+      </a> */}
       <Button
-        margin="0px 10px 0px 0px"
+        margin="0px 0px 0px 10px"
         padding="5px"
         width="none"
         height="none"

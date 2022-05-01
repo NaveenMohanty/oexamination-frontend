@@ -21,13 +21,16 @@ const Feedback = () => {
         <KeyboardBackspaceIcon fontSize="large" />
       </IconButtons>
       <Container align="center" height="100%" justify="center">
+        {/* <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScdTjvHD8grZz629PGneMfJnov42jaZhgoDysnuB6aifxlhTw/viewform?embedded=true" width="640" height="1165" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> */}
         <iframe
-          border="none"
-          src="https://forms.gle/zxjBWdHo9dQnE9sy7"
+          style={{ border: "none" }}
+          src="https://docs.google.com/forms/d/e/1FAIpQLScdTjvHD8grZz629PGneMfJnov42jaZhgoDysnuB6aifxlhTw/viewform?embedded=true"
           height="90%"
-          width="50%"
+          width="100%"
           title="Feedback Form"
-        ></iframe>
+        >
+          Loading…
+        </iframe>
       </Container>
     </HeaderFooter>
   );

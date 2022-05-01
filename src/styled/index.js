@@ -47,7 +47,7 @@ margin:${(props) => props.margin || "none"};
 background-color:${(props) => props.background || "none"};
 line-height:${(props) => props.lineHeight || "15px"};
 width:${(props) => props.width || "none"};
-cursor:${(props) => props.cursor || "none"};
+cursor:${(props) => props.cursor || ""};
 `;
 
 export const Input = Styled.input`
